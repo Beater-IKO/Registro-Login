@@ -10,7 +10,7 @@ public class Main {
         // Adicao dos usuarios para possivel efetuacao de login
         usuarios.add(new Usuario("Ari", "ari123"));
         usuarios.add(new Usuario("Carlos", "carlos123"));
-        usuarios.add(new Usuario("Diego", "diego123"));
+        usuarios.add (new Usuario("Diego", "diego123"));
         usuarios.add(new Usuario("Erick", "erick123"));
         usuarios.add(new Usuario("Fabio", "fabio123"));
 

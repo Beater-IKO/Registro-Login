@@ -53,7 +53,7 @@ public class Usuario {
     public static void deletarUsuario(String username, ArrayList<Usuario> usuarios) {
         for (int i = 0; i < usuarios.size(); i++) {
             if (usuarios.get(i).getUsername().equals(username)) {
-         
+
                 usuarios.remove(i);
                 System.out.println("Usuário removido com sucesso!");
             }

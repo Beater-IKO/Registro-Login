@@ -1,17 +1,29 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
+// Enum que define os níveis de prioridade para os tickets
+enum Prioridade {
+    BAIXA, MEDIA, ALTA, GRAVE;
+}
+
+// Enum que define as áreas da faculdade (Interna ou Externa)
+enum AreaFacul {
+    INTERNA, EXTERNA;
+}
+
 // Classe Ticket, que representa os detalhes de um ticket de suporte
 class Ticket {
-    String problema;
-    String sala;
-    String areaFacul;
-    String andar;
-    String prioridade;
-    String detalhes;
+    // Atributos privados da classe Ticket
+    private String problema;
+    private String sala;
+    private AreaFacul areaFacul;
+    private String andar;
+    private Prioridade prioridade;
+    private String detalhes;
 
     // Construtor da classe Ticket, que inicializa os valores de um ticket
-    public Ticket(String problema, String sala, String areaFacul, String andar, String prioridade, String detalhes) {
+    public Ticket(String problema, String sala, AreaFacul areaFacul, String andar, Prioridade prioridade,
+            String detalhes) {
         this.problema = problema;
         this.sala = sala;
         this.areaFacul = areaFacul;
@@ -22,7 +34,7 @@ class Ticket {
 
     // Método para exibir as informações do ticket de forma formatada
     public void exibirTicket() {
-        System.out.println("🚨 Novo Ticket Criado 🚨");
+        System.out.println(" Novo Ticket Criado");
         System.out.println("Problema: " + problema);
         System.out.println("Sala: " + sala);
         System.out.println("Área da Faculdade: " + areaFacul);
@@ -32,10 +44,62 @@ class Ticket {
         System.out.println("----------------------------------");
     }
 
+    // Métodos getters e setters para encapsular os atributos privados
+
+    public String getProblema() {
+        return problema;
+    }
+
+    public void setProblema(String problema) {
+        this.problema = problema;
+    }
+
+    public String getSala() {
+        return sala;
+    }
+
+    public void setSala(String sala) {
+        this.sala = sala;
+    }
+
+    public AreaFacul getAreaFacul() {
+        return areaFacul;
+    }
+
+    public void setAreaFacul(AreaFacul areaFacul) {
+        this.areaFacul = areaFacul;
+    }
+
+    public String getAndar() {
+        return andar;
+    }
+
+    public void setAndar(String andar) {
+        this.andar = andar;
+    }
+
+    public Prioridade getPrioridade() {
+        return prioridade;
+    }
+
+    public void setPrioridade(Prioridade prioridade) {
+        this.prioridade = prioridade;
+    }
+
+    public String getDetalhes() {
+        return detalhes;
+    }
+
+    public void setDetalhes(String detalhes) {
+        this.detalhes = detalhes;
+    }
 }
 
 // Classe principal que contém o menu e interação com o usuário
 public class CriarTicket {
+    /**
+     * Método principal que inicia o sistema e permite ao usuário interagir
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in); // Scanner para ler as entradas do usuário
         ArrayList<Ticket> tickets = new ArrayList<>(); // Lista para armazenar os tickets criados
@@ -76,13 +140,36 @@ public class CriarTicket {
                     String sala = scanner.nextLine();
 
                     System.out.println("Digite a área da faculdade (Interna/Externa):");
-                    String areaFacul = scanner.nextLine();
+                    AreaFacul areaFacul = null;
+                    // Loop para garantir que a área da faculdade seja válida
+                    while (areaFacul == null) {
+                        try {
+                            areaFacul = AreaFacul.valueOf(scanner.nextLine().toUpperCase()); // Recebe a entrada e tenta
+                                                                                             // convertê-la para o enum
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Erro: Área inválida.");
+                            System.out.println("Digite a área da faculdade (Interna/Externa):");
+                            areaFacul = null; // Redefine a variável para forçar nova entrada
+                        }
+                    }
 
                     System.out.println("Digite o andar:");
                     String andar = scanner.nextLine();
 
-                    System.out.println("Digite a prioridade (Baixa/Média/Alta):");
-                    String prioridade = scanner.nextLine();
+                    System.out.println("Digite a prioridade (BAIXA, MEDIA, ALTA, GRAVE):");
+                    Prioridade prioridade = null;
+                    // Loop para garantir que a prioridade seja válida
+                    while (prioridade == null) {
+                        try {
+                            prioridade = Prioridade.valueOf(scanner.nextLine().toUpperCase()); // Recebe a entrada e
+                                                                                               // tenta convertê-la para
+                                                                                               // o enum
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Erro: Prioridade inválida.");
+                            System.out.println("Digite a prioridade (BAIXA, MEDIA, ALTA, GRAVE):");
+                            prioridade = null; // Redefine a variável para forçar nova entrada
+                        }
+                    }
 
                     System.out.println("Digite detalhes adicionais:");
                     String detalhes = scanner.nextLine();

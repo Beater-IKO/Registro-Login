@@ -97,9 +97,6 @@ class Ticket {
 
 // Classe principal que contém o menu e interação com o usuário
 public class CriarTicket {
-    /**
-     * Método principal que inicia o sistema e permite ao usuário interagir
-     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in); // Scanner para ler as entradas do usuário
         ArrayList<Ticket> tickets = new ArrayList<>(); // Lista para armazenar os tickets criados
@@ -111,7 +108,8 @@ public class CriarTicket {
             System.out.println("\n==== Menu ====");
             System.out.println("1- Ver todos meus Tickets");
             System.out.println("2- Criar novo Ticket");
-            System.out.println("3- Sair");
+            System.out.println("3- Editar Ticket");
+            System.out.println("4- Sair");
             System.out.print("\nEscolha uma opção: "); // Solicita a opção ao usuário
             int opcao = scanner.nextInt(); // Lê a opção selecionada
             scanner.nextLine(); // Limpa a linha do buffer após o nextInt()
@@ -180,9 +178,91 @@ public class CriarTicket {
                     System.out.println("\nTicket criado com sucesso!\n"); // Mensagem de confirmação
                     break;
 
-                // Caso o usuário escolha sair
+                // Caso o usuário queira editar um ticket
                 case 3:
-                    System.out.println("\nSaindo... Até mais!"); // Exibe uma mensagem de despedida
+                    if (tickets.isEmpty()) {
+                        System.out.println("\nNenhum ticket disponível para editar.");
+                    } else {
+                        // Listar todos os tickets e pedir ao usuário para escolher qual editar
+                        System.out.println("\nEscolha o número do ticket que deseja editar:");
+                        for (int i = 0; i < tickets.size(); i++) {
+                            System.out.println("Ticket " + (i + 1));
+                            tickets.get(i).exibirTicket();
+                        }
+                        int escolha = scanner.nextInt();
+                        scanner.nextLine(); // Limpa o buffer
+
+                        if (escolha < 1 || escolha > tickets.size()) {
+                            System.out.println("Escolha inválida.");
+                            break;
+                        }
+
+                        Ticket ticketEscolhido = tickets.get(escolha - 1);
+
+                        // Exibe as opções de edição
+                        System.out.println("\nO que você deseja editar?");
+                        System.out.println("1- Problema");
+                        System.out.println("2- Sala");
+                        System.out.println("3- Área da Faculdade");
+                        System.out.println("4- Andar");
+                        System.out.println("5- Prioridade");
+                        System.out.println("6- Detalhes");
+                        System.out.print("Escolha uma opção: ");
+                        int opcaoEdicao = scanner.nextInt();
+                        scanner.nextLine(); // Limpa o buffer
+
+                        switch (opcaoEdicao) {
+                            case 1:
+                                System.out.println("Digite o novo problema:");
+                                ticketEscolhido.setProblema(scanner.nextLine());
+                                break;
+                            case 2:
+                                System.out.println("Digite a nova sala:");
+                                ticketEscolhido.setSala(scanner.nextLine());
+                                break;
+                            case 3:
+                                AreaFacul novaAreaFacul = null;
+                                while (novaAreaFacul == null) {
+                                    System.out.println("Digite a nova área da faculdade (Interna/Externa):");
+                                    try {
+                                        novaAreaFacul = AreaFacul.valueOf(scanner.nextLine().toUpperCase());
+                                    } catch (IllegalArgumentException e) {
+                                        System.out.println("Erro: Área inválida.");
+                                    }
+                                }
+                                ticketEscolhido.setAreaFacul(novaAreaFacul);
+                                break;
+                            case 4:
+                                System.out.println("Digite o novo andar:");
+                                ticketEscolhido.setAndar(scanner.nextLine());
+                                break;
+                            case 5:
+                                Prioridade novaPrioridade = null;
+                                while (novaPrioridade == null) {
+                                    System.out.println("Digite a nova prioridade (BAIXA, MEDIA, ALTA, GRAVE):");
+                                    try {
+                                        novaPrioridade = Prioridade.valueOf(scanner.nextLine().toUpperCase());
+                                    } catch (IllegalArgumentException e) {
+                                        System.out.println("Erro: Prioridade inválida.");
+                                    }
+                                }
+                                ticketEscolhido.setPrioridade(novaPrioridade);
+                                break;
+                            case 6:
+                                System.out.println("Digite os novos detalhes:");
+                                ticketEscolhido.setDetalhes(scanner.nextLine());
+                                break;
+                            default:
+                                System.out.println("Opção inválida.");
+                                break;
+                        }
+                        System.out.println("\nTicket editado com sucesso!");
+                    }
+                    break;
+
+                // Caso o usuário escolha sair
+                case 4:
+                    System.out.println("\nSaindo... Até mais!");
                     scanner.close(); // Fecha o scanner para liberar recursos
                     return; // Encerra a execução do programa
 

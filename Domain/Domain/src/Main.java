@@ -20,7 +20,7 @@ public class Main {
 
         System.out.println("Informe sua senha: ");
         String senhaUsuario = input.nextLine();
-        
+
         Usuario aluno = new Aluno(nomeUsuario, senhaUsuario);
 
         int opt;
@@ -48,6 +48,43 @@ public class Main {
                         String password = input.nextLine();
                         usuarios.add(new Aluno(username, password));
                         System.out.println("Usuario Cadastrado com sucesso");
+                    }
+                }
+
+                case 2 -> {
+
+                    String NomeAdm = "adm123";
+                    String SenhaAdm = "adm123";
+
+                    String NomeAgente = "agente123";
+                    String SenhaAgente = "agente123";
+
+                    System.out.println("Login....");
+
+                    System.out.println("Digite o nome de usuario:");
+                    String LoginUsuario = input.nextLine();
+                    System.out.println("Digite a senha: ");
+                    String LoginSenha = input.nextLine();
+
+                    if (LoginUsuario.equals(NomeAdm) && LoginSenha.equals(SenhaAdm)) {
+                        System.out.println("Login de administrador bem-sucedido!");
+
+                    } else {
+
+                        if (LoginUsuario.equals(NomeAgente) && LoginSenha.equals(SenhaAgente)) {
+                            System.out.println("Login de agente de campo bem-sucedido");
+
+                        } else {
+
+                            if (usuarios.equals(LoginUsuario) && usuarios.equals(LoginSenha)) {
+                                System.out.println("Logado com sucesso!");
+                            } else {
+                                System.out.println("Nome ou senha incorretes!");
+
+                            }
+
+                        }
+
                     }
                 }
 

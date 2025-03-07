@@ -1,6 +1,5 @@
 import java.util.ArrayList;
-import java.util.Scanner; // Importando a classe Scanner
-
+import java.util.Scanner; // Importando a classe Scanner    
 public class ManipulacaoTickets {
 
     // Método que permite listar todos os tickets
@@ -80,7 +79,6 @@ public class ManipulacaoTickets {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in); // Criando o Scanner
         ArrayList<Ticket> tickets = new ArrayList<>();
-        
         // Exemplo de tickets existentes para testes
         tickets.add(new Ticket("Problema A", "Sala 101", AreaFacul.INTERNA, "1", Prioridade.MEDIA, "Detalhes A"));
         tickets.add(new Ticket("Problema B", "Sala 102", AreaFacul.EXTERNA, "2", Prioridade.ALTA, "Detalhes B"));
@@ -105,7 +103,7 @@ public class ManipulacaoTickets {
                         System.out.println("Não há tickets para editar.");
                     } else {
                         // Mostrar todos os tickets e permitir a edição
-                        System.out.println("\nEscolha o número do ticket que deseja editar:");
+                        System.out.println("\nEscolha o número do ticket que desera editar:");
                         for (int i = 0; i < tickets.size(); i++) {
                             System.out.println("Ticket " + (i + 1));
                             tickets.get(i).exibirTicket();

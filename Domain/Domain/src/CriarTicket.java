@@ -1,6 +1,5 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-
 // Enum que define os níveis de prioridade para os tickets
 enum Prioridade {
     BAIXA, MEDIA, ALTA, GRAVE;

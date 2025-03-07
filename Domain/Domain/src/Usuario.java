@@ -1,13 +1,22 @@
 import java.util.ArrayList;
 
-public class Usuario {
+public abstract class Usuario implements Autenticar {
 
     private String username;
     private String password;
 
+    public Usuario(){
+
+    }
+
     public Usuario(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public Usuario(Usuario novo){
+        this.username = novo.username;
+        this.password = novo.password;
     }
 
     public String getUsername() {
@@ -26,11 +35,6 @@ public class Usuario {
         this.password = password;
     }
 
-    // Verificacao
-    public boolean autenticar(String password) {
-        return this.password.equals(password);
-    }
-
     // Verifica se os usuarios tem nomes iguais se isso ocorrer ele impede a criação
     // de um novo user
     public static Usuario buscarUsuario(String username, ArrayList<Usuario> usuarios) {
@@ -41,6 +45,8 @@ public class Usuario {
         }
         return null;
     }
+
+    public abstract void mostrarDetalhes();
 
     // Atualização do usuario;
     public void atualizarUsuario(String novoUserName, String novoPassword) {

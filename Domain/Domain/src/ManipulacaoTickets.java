@@ -89,6 +89,7 @@ public class ManipulacaoTickets {
             System.out.println("1- Ver todos os Tickets");
             System.out.println("2- Editar Ticket");
             System.out.println("3- Sair");
+            System.out.println("4- Enviar para o Agente de Campo");
             System.out.print("\nEscolha uma opção: ");
             int opcao = scanner.nextInt();
             scanner.nextLine(); // Limpa o buffer
@@ -124,6 +125,9 @@ public class ManipulacaoTickets {
                     System.out.println("Saindo... Até mais!");
                     scanner.close();
                     return;
+
+                case 4:
+                System.out.println("Enviado com sucesso!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
